@@ -20,6 +20,7 @@ const config = {
         path: path.resolve(__dirname, 'dist'),
 
         // This name is user defined, however, as per convention, we go with bundle.js
+        // Contains code from multiple JS files in correct load order
         filename: 'bundle.js'
     }
 };
