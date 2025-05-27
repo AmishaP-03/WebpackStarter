@@ -1,0 +1,30 @@
+/.angular/cache
+test
+dev-resources/
+dist/
+dist-*/
+tmp/
+.env
+.acache/
+.history/
+reports/
+src/assets/alf
+/test-results
+
+# Dependency directories
+node_modules
+node_modules_npm
+jspm_packages
+
+.env
+
+# Optional npm cache directory
+.npm
+
+# IDEs
+.vscode/*
+!.vscode/launch.json
+.idea
+*.iml
+.vim/
+
