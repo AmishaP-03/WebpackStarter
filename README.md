@@ -48,15 +48,17 @@ A starter project to see webpack in action
 
 # Setting up Babel
 
-        npm install --save-dev babel-loader babel-core babel-preset-env
+1. Install required dependencies:
 
-Required dependencies:
+        npm install --save-dev babel-loader @babel/core @babel/preset-env
 
-1. babel-loader
-    - Teaches babel how to work with webpack
 
-2. babel-core
-    - Facilitates taking in a code, parsing it and generating output files
+    - babel-loader -> Teaches babel how to work with webpack
+    - @babel/core -> Facilitates taking in a code, parsing it and generating output files
+    - @babel/preset-env -> Ruleset for telling babel exactly what pieces of ES6 (and above) syntax to look for and how to convert them into ES5 code
 
-3. babel-preset-env
-    - Ruleset for telling babel exactly what pieces of ES6 (and above) syntax to look for and how to convert them into ES5 code
+2. Create a .babelrc file to define presets
+
+3. Add the babel loader configurations to the webpack.config.js file
+
+**Note: In Babel v7, babel-core was renamed to @babel.core while babel-preset-env was renamed to @babel/preset-env**

@@ -1,0 +1,5 @@
+// Whenever babel loads up, it refers to this file and runs @babel/preset-env (which is already installed in this project)
+// @babel/preset-env helps babel know how to transform the code from ES6 to ES5
+{
+    "presets": ["@babel/preset-env"]
+}

@@ -22,6 +22,23 @@ const config = {
         // This name is user defined, however, as per convention, we go with bundle.js
         // Contains code from multiple JS files in correct load order
         filename: 'bundle.js'
+    },
+
+    // Module loader property -> Tells webpack to pre-process the files before bundling them.
+    // This is an optional property, but it is used to specify how different types of files should be processed.
+    module: {
+        // Each loader is added as a ruleset in this rules array
+        rules: [
+            {
+                // Tells webpack to run babel-loader to transpile the JS files
+                use: 'babel-loader', 
+
+                // Test property is a regex to match the files to be processed by this loader
+                // In this case, we want to apply babel to only JS files (and not CSS files or images etc)
+                test: /\.js$/,
+            }
+
+        ]
     }
 };
 
