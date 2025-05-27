@@ -45,3 +45,18 @@ A starter project to see webpack in action
 - However, when we install webpack just for a particular project and write a script to run it (as mentioned in the previous section), upon running that script:
     - Instead of checking the global node_modules directory our computer, npm will check the node_modules of our current project and run the `webpack` module present in it.
 - When we install webpack globally, we can have only one version of it at a given time. If we want a project to be using webpack vX.0 and other one to be using vY.0, we should install it per project.
+
+# Setting up Babel
+
+        npm install --save-dev babel-loader babel-core babel-preset-env
+
+Required dependencies:
+
+1. babel-loader
+    - Teaches babel how to work with webpack
+
+2. babel-core
+    - Facilitates taking in a code, parsing it and generating output files
+
+3. babel-preset-env
+    - Ruleset for telling babel exactly what pieces of ES6 (and above) syntax to look for and how to convert them into ES5 code
