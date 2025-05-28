@@ -68,7 +68,34 @@ A starter project to see webpack in action
         npm install --save-dev style-loader css-loader
 
 1. css-loader -> Teaches webpack how to import and parse CSS files
-2. style-loader -> Teaches webpack what to do with the content of the CSS file (i.e inject them to a style tag in HTML document)
+2. style-loader -> Teaches webpack what to do with the content of the CSS file (i.e inject them to a style tag in HTML document in bundle.js)
 
     <img src="./lectureAssests/styleCssLoader.png" alt="Style CSS Loader">
 
+Add rule for them in webpack.config.js
+
+
+# Loading CSS in a separate file instead of bundle.js
+
+Why?
+
+- Loading CSS in a separate file is a lot faster than loading them along with JS in a single file because of browser's functionality of handling parallel download requests.
+
+Library to install and add in webpack.config.js:
+
+        npm install --save-dev mini-css-extract-plugin
+
+- This plugin extracts all the CSS code in the project into one separate file (diff from the JS file).
+- It requires webpack 5 to work.
+- Compared to the extract-text-webpack-plugin (deprecated):
+
+    - Async loading
+    - No duplicate compilation (performance)
+    - Easier to use
+    - Specific to CSS
+
+What happens next?
+
+- After re-building, webpack picks up the CSS code and bundles them into a separate file (style.css as name specified in webpack.config.js) in the dist folder.
+- Since CSS is not added along with JS in a single file, it is also not injected into the style tag of the HTML document.
+- We will explicitly add it to the index.html file via a link tag.

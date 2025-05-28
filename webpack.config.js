@@ -3,6 +3,9 @@
 
 const path = require('node:path');
 
+// Plugin
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 const config = {
     // 1st mandatory property
     // Relative path of file to be loaded foremost while running the application. 
@@ -24,6 +27,9 @@ const config = {
         filename: 'bundle.js'
     },
 
+    // Takes the output of that loader rules below and put the CSS code into a style.css file in dist folder
+    plugins: [new MiniCssExtractPlugin({filename: 'style.css'})],
+
     // Module loader property -> Tells webpack to pre-process the files before bundling them.
     // This is an optional property, but it is used to specify how different types of files should be processed.
     module: {
@@ -41,7 +47,13 @@ const config = {
                 // style-loader injects CSS into the DOM, css-loader interprets @import and url() like import/require() and will resolve them.
                 // The order of loaders is important; they are applied from right to left.
                 // Here, css-loader is applied first to process the CSS files, and then style-loader is applied to inject the processed CSS into the DOM.
-                use: ['style-loader', 'css-loader'], 
+
+                // This adds CSS along with JS in a single file , which is not very efficient. See alternative below.
+    
+                // use: ['style-loader', 'css-loader'], 
+
+                // Using plugin to have CSS in separate file
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
 
                 // This rule applies to all CSS files
                 test: /\.css$/ 
