@@ -1,6 +1,9 @@
 // ES6 syntax:
 import { getSum } from './sum.js';
 
+// Linking the image-viewer.js file here
+import './image-viewer.js';
+
 // Common JS syntax:
 // const getSum = require('./sum.js');
 

@@ -36,6 +36,15 @@ const config = {
                 // Test property is a regex to match the files to be processed by this loader
                 // In this case, we want to apply babel to only JS files (and not CSS files or images etc)
                 test: /\.js$/,
+            },
+            {
+                // style-loader injects CSS into the DOM, css-loader interprets @import and url() like import/require() and will resolve them.
+                // The order of loaders is important; they are applied from right to left.
+                // Here, css-loader is applied first to process the CSS files, and then style-loader is applied to inject the processed CSS into the DOM.
+                use: ['style-loader', 'css-loader'], 
+
+                // This rule applies to all CSS files
+                test: /\.css$/ 
             }
 
         ]

@@ -46,7 +46,7 @@ A starter project to see webpack in action
     - Instead of checking the global node_modules directory our computer, npm will check the node_modules of our current project and run the `webpack` module present in it.
 - When we install webpack globally, we can have only one version of it at a given time. If we want a project to be using webpack vX.0 and other one to be using vY.0, we should install it per project.
 
-# Setting up Babel
+# Setting up Babel (One of the webpack's module loader)
 
 1. Install required dependencies:
 
@@ -62,3 +62,13 @@ A starter project to see webpack in action
 3. Add the babel loader configurations to the webpack.config.js file
 
 **Note: In Babel v7, babel-core was renamed to @babel.core while babel-preset-env was renamed to @babel/preset-env**
+
+# Loaders to help webpack deal with CSS files
+
+        npm install --save-dev style-loader css-loader
+
+1. css-loader -> Teaches webpack how to import and parse CSS files
+2. style-loader -> Teaches webpack what to do with the content of the CSS file (i.e inject them to a style tag in HTML document)
+
+    <img src="./lectureAssests/styleCssLoader.png" alt="Style CSS Loader">
+
