@@ -16,7 +16,7 @@ A starter project to see webpack in action
 - `index.js` will be using the functions from `sum.js` hence it is should be loaded first.
 - Syntax to link JS files as per the module system:
 
-    <img src="./lectureAssests/moduleSystem.png" alt="Module System">
+    <img src="./src/assets/moduleSystem.png" alt="Module System">
 
 3. Install and configure webpack
 
@@ -70,7 +70,7 @@ A starter project to see webpack in action
 1. css-loader -> Teaches webpack how to import and parse CSS files
 2. style-loader -> Teaches webpack what to do with the content of the CSS file (i.e inject them to a style tag in HTML document in bundle.js)
 
-    <img src="./lectureAssests/styleCssLoader.png" alt="Style CSS Loader">
+    <img src="./src/assets/styleCssLoader.png" alt="Style CSS Loader">
 
 Add rule for them in webpack.config.js
 
@@ -99,3 +99,40 @@ What happens next?
 - After re-building, webpack picks up the CSS code and bundles them into a separate file (style.css as name specified in webpack.config.js) in the dist folder.
 - Since CSS is not added along with JS in a single file, it is also not injected into the style tag of the HTML document.
 - We will explicitly add it to the index.html file via a link tag.
+
+# Loader to help webpack deal with images
+
+Need?
+
+- When the bundle.js file tries to access images from an external source, there is a delay/lag in loading those images. Hence, it is not efficient performace wise.
+
+- external source ->
+
+    `(()=>{"use strict";var e=document.createElement("img");e.src="./assets/large.jpg",document.body.appendChild(e);var n=document.createElement("p");n.innerHTML=15,document.body.appendChild(n),console.log("The sum of 5 and 10 is: ".concat(15))})();`
+
+    `e.src="./assets/large.jpg"`
+
+Which loaders?
+
+- image-webpack-loader
+    - compresses the image
+- url-loader (Used before webpack 5)
+    - Takes the result of image-webpack-loader and checks its size.
+    - If the image is small (≤ 10kB), includes it in bundle.js as raw data. [MORE EFFICIENT THAN THE NEXT APPROACH]
+    - If the image is big, includes the raw image in a separate file in the output directory (i.e the build directory). It will be then be on us how to reference that image in our code.
+- asset (Introduced in webpack 5)
+    - The asset modules were introduced in Webpack 5, which was officially released in October 2020.
+    - This feature was designed to replace the need for separate loaders like url-loader and file-loader by providing built-in asset handling.
+    - `type` attribute in the rule can have the following possible values:
+        1. asset/resource — emits the image in a separate file
+        2. asset/inline — adds the image as base64 URI string in bundle.js file
+        3. asset — automatically chooses between exporting a data URI and emitting a separate file based on a default size limit (usually 8kb)
+        4. asset/source — exports the source code of the asset (useful for SVG as a string)
+
+Installation?
+
+         npm install --save-dev image-webpack-loader url-loader
+
+Add rule in webpack.config.js
+
+

@@ -4,7 +4,8 @@
 const path = require('node:path');
 
 // Plugin
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { default: test } = require('node:test');
 
 const config = {
     // 1st mandatory property
@@ -57,6 +58,30 @@ const config = {
 
                 // This rule applies to all CSS files
                 test: /\.css$/ 
+            },
+            {
+                use: ['image-webpack-loader'],
+
+                // Applies to png, jpg, jpeg, gif, and svg files
+                test: /\.(png|jpe?g|gif|svg)$/,
+
+                // If the image is larger 40KB, add it to a separate file in dist folder
+                // Else add it as raw data in bundle.js
+                type: 'asset',
+
+                parser: {
+                    dataUrlCondition: {
+                        // Image size threshold 40 KB
+                        maxSize: 40000
+                    }
+                },
+
+                // Specify the folder name to store the generated image file in dist folder
+                // The images in the project > 40KB in size will each be emitted in a separate file in dist/images. Their filename will follow the regex defined below: [hash][ext][query]
+                // If any 2 image files have exactly the same content, webpack might deduplicate and emit only one file for them.
+                generator: {
+                    filename: 'images/[hash][ext][query]'
+                }
             }
 
         ]
